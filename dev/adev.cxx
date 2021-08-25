@@ -40,23 +40,31 @@ int main(int argc, char **argv)
 	// setup
 	for(ul x = 1; x <= Limit; ++x) data.push_back({x,x,2});
 	a = std::next(data.begin(),1);
-	w = a;
 	// loop
-	while(w < data.end()){
-		while((w->residue % 2) == 0){
-			w->residue /= a->n;
-			w->phi += 1;
+	while(a < data.end()){
+		w = a;
+		while(w < data.end()){
+			if(w->residue < a->n) continue;
+			if(w->residue == a->n){
+				w->residue = 0;
+				w->phi += 1;
+			} else {
+				while((w->residue % a->n)==0){
+					w->residue /= a->n;
+					w->phi += 1;
+				}
+			}
+			std::advance(w, a->n);
 		}
-		std::advance(w, a->n);
-	}
-	// advance a
-	do{
-		std::advance(a,1);
-	} while((a < data.end())&&(a->residue != a->n));		
-	
-	// debug
-	for (auto x = data.begin()+1; x != data.end(); ++x) printf("n:%llu residue:%llu phi:%llu\n", x->n, x->residue, x->phi);
+		// advance a
+		do{
+			std::advance(a,1);
+		} while((a < data.end())&&(a->residue != a->n));
 
+		// debug
+		for (auto x = data.begin()+1; x != data.end(); ++x) printf("n:%llu residue:%llu phi:%llu\n", x->n, x->residue, x->phi);
+		printf("a advanced to %llu\n", a->n);
+	}
 	return 0;
 }
 
