@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 	std::vector<Data> data;
 	std::vector<Data>::iterator a,w;
 	// setup
-	for(ul x = 1; x <= Limit; ++x) data.push_back({x,x,2});
+	for(ul x = 1; x <= Limit; ++x) data.push_back({x,x,1});
 	a = std::next(data.begin(),1);
 	// loop
 	while(a < data.end()){
