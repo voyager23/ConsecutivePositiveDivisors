@@ -37,10 +37,11 @@ int main(int argc, char **argv)
 	const ul Limit = 16;
 	std::vector<Data> data;
 	std::vector<Data>::iterator a,w;
+	// setup
 	for(ul x = 1; x <= Limit; ++x) data.push_back({x,x,2});
 	a = std::next(data.begin(),1);
 	w = a;
-	
+	// loop
 	while(w < data.end()){
 		while((w->residue % 2) == 0){
 			w->residue /= a->n;
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 	} while((a < data.end())&&(a->residue != a->n));		
 	
 	// debug
-	for (auto x = data.begin()+1; x != data.end(); ++x) printf("n:%lu residue:%lu phi:%lu\n", x->n, x->residue, x->phi);
+	for (auto x = data.begin()+1; x != data.end(); ++x) printf("n:%llu residue:%llu phi:%llu\n", x->n, x->residue, x->phi);
 
 	return 0;
 }
