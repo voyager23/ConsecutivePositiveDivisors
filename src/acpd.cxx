@@ -26,8 +26,10 @@
 
 int main(int argc, char **argv)
 {
+	#define Limit 10000000L
 	// 1 < n < 10^x
-	const ul Limit = 10000000;
+	int foobar = 0;
+	//unsigned long Limit = 10000000;
 	// Generate an array/vector of primes 2 => Limit/2
 	std::vector<ul> primes;
 	SieveOfEratosthenes(primes, (Limit/2)+1);
