@@ -26,7 +26,7 @@
 
 int main()
 {
-	const ul Limit = 10000000;
+	const ul Limit = 10000000L;
 	
 	// Generate an vector of primes 2 => Limit/2
 	std::vector<ul> primes;
@@ -54,8 +54,19 @@ int main()
 			data[w] *= exp;
 		}
 	}
-	for(ul x = 2; x < Limit; ++x) printf("%lu : %lu    ", x, data[x]);
+	//for(ul x = 2; x < Limit; ++x) printf("%llu : %llu\n", x, data[x]);
 	NL;
+	// Finally find the number of integers for which n and n+1 have the same number of positive divisors.
+	ul count = 0;
+	std::vector<ul>::iterator p = data.begin()+3;
+	std::vector<ul>::iterator q = data.begin()+2;
+	while(p != data.end()){
+		if(*p == *q) count += 1;
+		p++; q++;
+	}
+	
+	printf("Limit: %llu\tCount: %llu\n", Limit, count);
+	
 	return 0;
 }
 
