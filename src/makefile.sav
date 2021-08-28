@@ -1,0 +1,35 @@
+# Cxx Makefile Template
+
+.PHONY : clean all go
+
+CFLAGS = -Wall -ggdb
+LIBS =
+
+OBJECTS = ConsecutivePositiveDivisors.o library.o
+
+HEADERS = ConsecutivePositiveDivisors.hxx library.hxx
+
+OBJS = $(addprefix ../obj/, $(OBJECTS) )
+HDRS = $(addprefix ../inc/, $(HEADERS))
+OUT = ../obj/$@
+
+RUNFILE = ../bin/ConsecutivePositiveDivisors
+
+all : $(OBJECTS) $(HDRS)
+	g++ $(CFLAGS) $(OBJS) $(LIBS) -o $(RUNFILE)
+
+ConsecutivePositiveDivisors.o : ConsecutivePositiveDivisors.cxx $(HDRS)
+	g++ -c $(CFLAGS) $< -o $(OUT)
+	
+library.o : library.cxx $(HDRS)
+	g++ -c $(CFLAGS) $< -o $(OUT)
+
+# ----------------------------------------------------------------------
+
+go :
+	@echo "Running file $(RUNFILE)"
+	$(RUNFILE)
+	
+
+
+

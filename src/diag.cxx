@@ -24,38 +24,27 @@
 #include <iostream>
 #include "../inc/toolbox.hxx"
 
-int main()
+int main(void)
 {
+	int foobar = 0;
+
 	const ul Limit = 10000000;
-	
-	// Generate an vector of primes 2 => Limit/2
+	// Generate an array/vector of primes 2 => Limit/2
 	std::vector<ul> primes;
 	SieveOfEratosthenes(primes, (Limit/2)+1);
-	// We need to assoc. each n with number of divisors of n.
-	// In general this is the product of each prime exponent + 1
-	// 144 = 2^4 * 3^2.  Number of divisors = (4+1)(2+1) = 15
+
 	std::vector<ul> data;	// 0 <= index < Limit
-	printf("Setting data vector\n");
+	
+#if(1)
+	printf("Setting data array\n");
 	for(ul x = 0; x < Limit; ++x) {
 		data.push_back(1);
 		//printf("%lu,%lu  ", x, data[x]);
 	}
+#endif
+
 	printf("Setup complete\n");
-	// using each prime, set values for the prime and multiples in data vectr
-	for(auto a = primes.begin(); a != primes.end(); ++a){
-		ul p = *a;  // index (prime) into data vectoror
-		for(ul w = p; w < Limit; w += p){
-			ul temp = w;
-			ul  exp = 1;
-			while((temp % p) == 0){
-				temp /= p;
-				exp += 1;
-			}
-			data[w] *= exp;
-		}
-	}
-	for(ul x = 2; x < Limit; ++x) printf("%lu : %lu    ", x, data[x]);
-	NL;
+	
 	return 0;
 }
 

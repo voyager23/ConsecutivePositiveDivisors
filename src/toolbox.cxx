@@ -48,16 +48,16 @@ void SieveOfEratosthenes(std::vector<ul> &primes, ul n)
 		}
 	}
     primes.clear();
-    for(auto pn = 2; pn != n+1; ++pn) if(prime[pn]) primes.push_back(pn);
+    for(ul pn = 2; pn != n+1; ++pn) if(prime[pn]) primes.push_back(pn);
     printf("completed Sieve\n");
 }
 
 #if(0)
 int main(void) {
     std::vector<ul> primes;
-    const ul n = 999;
+    const ul n = 9999999;
     SieveOfEratosthenes(primes,n);
-    for(auto pf = primes.begin(); pf != primes.end(); ++pf) printf("%d  ", *pf);
+    for(auto pf = primes.begin(); pf != primes.end(); ++pf) printf("%lu  ", *pf);
     NL;
 }
 #endif
